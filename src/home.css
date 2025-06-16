@@ -1,0 +1,50 @@
+body{
+    background-color: black;
+}
+
+#title{
+    color: white;
+    text-align: center;
+}
+
+#title:hover{
+    font-size: 50px;
+    color: hsl(57, 100%, 91%);
+}
+
+#t1{
+    color: lightgreen;
+}
+#t2{
+    color: hsl(57, 100%, 91%);
+}
+#t3{
+    color: white;
+}
+
+#show{
+    width: 100px;
+    background-color: lightgreen;
+    border-radius: 10px;
+    border: none;
+    color: white;
+}
+
+#hide{
+    width: 100px;
+    background-color: lightgreen;
+    border-radius: 10px;
+    border: none;
+    float: right;
+    color: white;
+}
+
+#show:hover{
+    background-color: hsl(57, 100%, 91%);
+    color: black;
+}
+
+#hide:hover{
+    background-color: hsl(57, 100%, 91%);
+    color: black;
+}
