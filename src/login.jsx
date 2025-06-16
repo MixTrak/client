@@ -7,19 +7,40 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const API = import.meta.env.VITE_API_URL;
-    
+    const API = import.meta.env.VITE_API_URL; // Ensure this matches Vercel env var
+
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        if (!email || !password) { // Added client-side validation for empty fields
+            alert("Please enter both email and password.");
+            return;
+        }
+
         axios.post(`${API}/login`, { email, password })
             .then(result => {
                 console.log(result);
                 if (result.data.message === "Success") {
-                    localStorage.setItem("userEmail", result.data.user.email); 
+                    localStorage.setItem("userEmail", result.data.user.email);
                     navigate('/home');
+                } else {
+                    // Display specific error messages from the backend
+                    alert(result.data.message);
                 }
             })
-            .catch(error => console.error(error));
+            .catch(error => {
+                console.error("Login error:", error); // Log the actual error
+                if (error.response) {
+                    // Server responded with an error (e.g., 401, 404, 500)
+                    alert(`Login failed: ${error.response.data.message || 'Server error'}`);
+                } else if (error.request) {
+                    // Request was made but no response (e.g., network issue, backend down)
+                    alert("Network error: Could not connect to the server. Please try again.");
+                } else {
+                    // Something else happened
+                    alert("An unexpected error occurred during login.");
+                }
+            });
     };
 
     return (
@@ -39,6 +60,7 @@ function Login() {
                             name='email'
                             className='form-control rounded-0'
                             onChange={(event) => setEmail(event.target.value)}
+                            value={email} // Controlled component
                         />
                     </div>
                     {/* Password */}
@@ -53,6 +75,7 @@ function Login() {
                             name='password'
                             className='form-control rounded-0'
                             onChange={(event) => setPassword(event.target.value)}
+                            value={password} // Controlled component
                         />
                     </div>
                     <button type='submit' className='btn btn-success w-100 rounded-0'>

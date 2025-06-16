@@ -10,30 +10,40 @@ function Signup(){
     const [password, setPassword] = useState()
     const [subject, setSubject] = useState();
     const navigate = useNavigate()
-    const API = import.meta.env.VITE_API_URL;
+    const API = import.meta.env.VITE_API_URL; // Ensure this matches Vercel env var
 
     const handleSubmit = (event) => {
         event.preventDefault()
-    
+
         if (!name || !email || !password || !subject) {
-            alert("All fields are required.")
+            alert("All fields are required."); // Consistent message
             return
         }
-    
+
         axios.post(`${API}/register`, {name, email, password, subject})
         .then(result => {
             if(result.data === "User Already Exists") {
-                alert("Email is already registered.")
+                alert("Email is already registered. Please use a different email or login.");
             } else {
                 console.log(result)
+                alert("Registration successful! Please login."); // Added success alert
                 navigate('/login')
             }
         })
         .catch(error => {
-            console.error(error)
-            alert("Registration failed.")
+            console.error("Registration error:", error); // Log the actual error
+            if (error.response) {
+                // Server responded with an error
+                alert(`Registration failed: ${error.response.data || 'Server error'}`);
+            } else if (error.request) {
+                // Request was made but no response
+                alert("Network error: Could not connect to the server. Please try again.");
+            } else {
+                // Something else happened
+                alert("An unexpected error occurred during registration.");
+            }
         })
-    }    
+    }
 
     return(
         <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
@@ -42,10 +52,10 @@ function Signup(){
                 <form onSubmit={handleSubmit}>
                     {/* Name */}
                     <div className="mb-3">
-                        <label htmlFor='email'>
+                        <label htmlFor='name'> {/* Changed htmlFor to 'name' */}
                             <strong>Name</strong>
                         </label>
-                        <input 
+                        <input
                         type='text'
                         placeholder='Enter Name'
                         autoComplete='off'
@@ -59,7 +69,7 @@ function Signup(){
                         <label htmlFor='email'>
                             <strong>Email</strong>
                         </label>
-                        <input 
+                        <input
                         type='email'
                         placeholder='Enter Email'
                         autoComplete='off'
@@ -73,7 +83,7 @@ function Signup(){
                         <label htmlFor='password'>
                             <strong>Password</strong>
                         </label>
-                        <input 
+                        <input
                         type='password'
                         placeholder='Enter Password'
                         autoComplete='off'
@@ -92,7 +102,9 @@ function Signup(){
                             name="subject"
                             className="form-control rounded-0"
                             onChange={(event) => setSubject(event.target.value)}
+                            defaultValue="" // Added default value to avoid uncontrolled component warning
                             >
+                            <option value="" disabled hidden>Choose subject...</option> {/* Prompt option */}
                             <option>Math</option>
                             <option>English</option>
                             <option>Science</option>
