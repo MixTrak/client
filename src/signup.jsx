@@ -10,6 +10,7 @@ function Signup(){
     const [password, setPassword] = useState()
     const [subject, setSubject] = useState();
     const navigate = useNavigate()
+    const API = import.meta.env.VITE_API_URL;
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -19,7 +20,7 @@ function Signup(){
             return
         }
     
-        axios.post('https://server-kmyn.onrender.com/register', {name, email, password, subject})
+        axios.post(`${API}/register`, {name, email, password, subject})
         .then(result => {
             if(result.data === "User Already Exists") {
                 alert("Email is already registered.")
