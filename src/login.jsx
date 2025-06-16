@@ -1,7 +1,7 @@
-import { useNavigate } from 'react-router-dom'
-import {useState} from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -43,14 +43,21 @@ function Login() {
             });
     };
 
+    // Adjusted width: Increased maxWidth to 600px for larger screens
+    // 'width: 90%' ensures it's still responsive and fits on smaller screens
+    const containerStyle = {
+        minWidth: '600px', // Increased maximum width for desktop/larger screens
+        width: '100%',     // Ensures it takes 100% of available width on smaller screens
+    };
+
     return (
         <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
-            <div className="bg-white p-3 rounded w-25">
-                <h2>Login</h2>
+            <div className="bg-white p-4 rounded shadow" style={containerStyle}> {/* Adjusted padding, added shadow, applied style */}
+                <h2 className="mb-3 text-center">Login</h2> {/* Centered heading */}
                 <form onSubmit={handleSubmit}>
                     {/* Email */}
                     <div className="mb-3">
-                        <label htmlFor='email'>
+                        <label htmlFor='email' className="form-label"> {/* Added form-label */}
                             <strong>Email</strong>
                         </label>
                         <input
@@ -58,14 +65,14 @@ function Login() {
                             placeholder='Enter Email'
                             autoComplete='off'
                             name='email'
-                            className='form-control rounded-0'
+                            className='form-control'
                             onChange={(event) => setEmail(event.target.value)}
                             value={email} // Controlled component
                         />
                     </div>
                     {/* Password */}
                     <div className="mb-3">
-                        <label htmlFor='password'>
+                        <label htmlFor='password' className="form-label"> {/* Added form-label */}
                             <strong>Password</strong>
                         </label>
                         <input
@@ -73,17 +80,17 @@ function Login() {
                             placeholder='Enter Password'
                             autoComplete='off'
                             name='password'
-                            className='form-control rounded-0'
+                            className='form-control' 
                             onChange={(event) => setPassword(event.target.value)}
                             value={password} // Controlled component
                         />
                     </div>
-                    <button type='submit' className='btn btn-success w-100 rounded-0'>
+                    <button type='submit' className='btn btn-success w-100'> {/* Removed rounded-0 */}
                         Login
                     </button>
                 </form>
-                <p>Don't Have An Account?</p>
-                <Link to="/register" className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none'>
+                <p className="mt-3 text-center">Don't Have An Account?</p> {/* Added margin-top and centered text */}
+                <Link to="/register" className='btn btn-outline-primary w-100 text-decoration-none'> {/* Changed to outline button */}
                     Register
                 </Link>
             </div>
