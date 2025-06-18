@@ -1,0 +1,128 @@
+/* General styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #2c3e50;
+}
+
+/* Container */
+.account-container {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 25px;
+    background: linear-gradient(135deg, #ffffff, #f9f9fc);
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Header */
+.account-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.account-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #34495e;
+}
+
+.account-header p {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+}
+
+/* Information section */
+.account-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.account-info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background: #f9f9fc;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.account-info-item label {
+    font-weight: bold;
+    color: #555;
+}
+
+.account-info-item span {
+    color: #777;
+}
+
+.account-info-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Buttons */
+.account-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.account-actions button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.account-actions button:hover {
+    transform: scale(1.05);
+}
+
+.account-actions button.save {
+    background-color: #27ae60;
+    color: #fff;
+}
+
+.account-actions button.save:hover {
+    background-color: #2ecc71;
+}
+
+.account-actions button.cancel {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.account-actions button.cancel:hover {
+    background-color: #c0392b;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .account-container {
+        padding: 15px;
+    }
+
+    .account-header h1 {
+        font-size: 2rem;
+    }
+
+    .account-info-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 12px;
+    }
+
+    .account-actions button {
+        font-size: 0.9rem;
+    }
+}

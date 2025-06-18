@@ -1,3 +1,4 @@
+import News from './news';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -7,19 +8,18 @@ function Signup() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [subject, setSubject] = useState('');
     const navigate = useNavigate();
     const API = import.meta.env.VITE_API_URL;
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (!name || !email || !password || !subject) {
+        if (!name || !email || !password ) {
             alert("All fields are required.");
             return;
         }
 
-        axios.post(`${API}/register`, { name, email, password, subject })
+        axios.post(`${API}/register`, { name, email, password })
             .then(result => {
                 if (result.data === "User Already Exists") {
                     alert("Email is already registered. Please use a different email or login.");
@@ -97,26 +97,6 @@ function Signup() {
                             onChange={(event) => setPassword(event.target.value)}
                             value={password}
                         />
-                    </div>
-                    {/* Options */}
-                    <div className="mb-3">
-                        <label htmlFor="select" className="form-label">
-                            <strong>Select One</strong>
-                        </label>
-                        <select
-                            id="select"
-                            name="subject"
-                            className="form-select"
-                            onChange={(event) => setSubject(event.target.value)}
-                            defaultValue=""
-                        >
-                            <option value="" disabled hidden>Choose subject...</option>
-                            <option>Math</option>
-                            <option>English</option>
-                            <option>Science</option>
-                            <option>Social Studies</option>
-                            <option>Computer Science</option>
-                        </select>
                     </div>
                     {/* Button */}
                     <button type='submit' className='btn btn-success w-100'>

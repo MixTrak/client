@@ -9,8 +9,18 @@ function Home() {
     const [error, setError] = useState(null);     // Added error state
     const [text1, setText1] = useState("");
     const [text2, setText2] = useState("")
-    const [text3, setText3] = useState("")
     const navigate = useNavigate(); // Initialize navigate hook
+    
+    const handleChange = (event) => {
+        const value = event.target.value;
+     
+        if (value === 'account') {
+            navigate('/account');
+        } else if (value === 'logout') {
+           localStorage.removeItem('token');
+           navigate('/login');
+        }
+        };
 
     // Ensure VITE_API_URL is set in your Vercel project environment variables
     const API = import.meta.env.VITE_API_URL;
@@ -63,13 +73,7 @@ function Home() {
         fetchUserData();
     }, [API, navigate]); // Add API and navigate to dependency array
 
-    function handleShowInfo() {
-        if (user) {
-            setText1(`Name: ${user.name}`)
-            setText2(`Email: ${user.email}`)
-            setText3(`Subject: ${user.subject}`);
-        }
-    }
+    // Function to handle showing info {???}
 
     // Conditional rendering based on loading, error, and user states
     if (loading) { // Display loading state
@@ -84,17 +88,11 @@ function Home() {
     if (user) {
         return (
             <>
-                <h1 id='title'>Welcome {user.name}</h1>
-                <button onClick={handleShowInfo} id='show'>Show</button>
-                <button onClick={() => {
-                    setText1("");
-                    setText2("");
-                    setText3("");
-                }} id='hide'>Hide</button>
-                <div className="textContainer">
-                    <h1 id='t1'>{text1}</h1>
-                    <h1 id='t2'>{text2}</h1>
-                    <h1 id='t3'>{text3}</h1>
+                <h1>Welcome, {user.name}!</h1>
+                {/*Change The NEWS Based On Events*/}
+                <News />
+                <div className='profile'>
+                    <h1>{user.name.wordCharAt(0)}</h1>
                 </div>
             </>
         );
