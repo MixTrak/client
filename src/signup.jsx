@@ -14,7 +14,7 @@ function Signup() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (!name || !email || !password ) {
+        if (!name.trim() || !email.trim() || !password.trim()) { // Ensure fields are not just whitespace
             alert("All fields are required.");
             return;
         }

@@ -12,7 +12,7 @@ function Login() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (!email || !password) { // Added client-side validation for empty fields
+        if (!email.trim() || !password.trim()) { // Ensure fields are not just whitespace
             alert("Please enter both email and password.");
             return;
         }

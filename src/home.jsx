@@ -93,7 +93,7 @@ function Home() {
                 {/*Change The NEWS Based On Events*/}
                 <News />
                 <div className='profile'>
-                    <h1>{user.name.wordCharAt(0)}</h1>
+                    <h1>{user.name.charAt(0)}</h1> {/* Fixed incorrect method wordCharAt */}
                 </div>
             </>
         );
