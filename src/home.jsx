@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './home.css';
 import axios from 'axios';
+import News from './news.jsx'; // Import the News component
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 
 function Home() {
