@@ -6,6 +6,7 @@ import axios from 'axios';
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false); // Add loading state
     const navigate = useNavigate();
     const API = import.meta.env.VITE_API_URL; // Ensure this matches Vercel env var
 
@@ -17,6 +18,7 @@ function Login() {
             return;
         }
 
+        setLoading(true); // Set loading to true
         axios.post(`${API}/login`, { email, password })
             .then(result => {
                 console.log(result);
@@ -27,6 +29,7 @@ function Login() {
                     // Display specific error messages from the backend
                     alert(result.data.message);
                 }
+                setLoading(false); // Set loading to false
             })
             .catch(error => {
                 console.error("Login error:", error); // Log the actual error
@@ -40,6 +43,7 @@ function Login() {
                     // Something else happened
                     alert("An unexpected error occurred during login.");
                 }
+                setLoading(false); // Set loading to false
             });
     };
 
@@ -85,8 +89,8 @@ function Login() {
                             value={password} // Controlled component
                         />
                     </div>
-                    <button type='submit' className='btn btn-success w-100'> {/* Removed rounded-0 */}
-                        Login
+                    <button type='submit' className='btn btn-success w-100' disabled={loading}>
+                        {loading ? "Loading..." : "Login"}
                     </button>
                 </form>
                 <p className="mt-3 text-center">Don't Have An Account?</p> {/* Added margin-top and centered text */}

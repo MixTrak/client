@@ -8,6 +8,7 @@ function Signup() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false); // Add loading state
     const navigate = useNavigate();
     const API = import.meta.env.VITE_API_URL;
 
@@ -19,6 +20,7 @@ function Signup() {
             return;
         }
 
+        setLoading(true); // Set loading to true
         axios.post(`${API}/register`, { name, email, password })
             .then(result => {
                 if (result.data === "User Already Exists") {
@@ -28,6 +30,7 @@ function Signup() {
                     alert("Registration successful! Please login.");
                     navigate('/login');
                 }
+                setLoading(false); // Set loading to false
             })
             .catch(error => {
                 console.error("Registration error:", error);
@@ -38,6 +41,7 @@ function Signup() {
                 } else {
                     alert("An unexpected error occurred during registration.");
                 }
+                setLoading(false); // Set loading to false
             });
     };
 
@@ -99,8 +103,8 @@ function Signup() {
                         />
                     </div>
                     {/* Button */}
-                    <button type='submit' className='btn btn-success w-100'>
-                        Register
+                    <button type='submit' className='btn btn-success w-100' disabled={loading}>
+                        {loading ? "Loading..." : "Register"}
                     </button>
                 </form>
                 <p className="mt-3 text-center">Already Have An Account?</p>
