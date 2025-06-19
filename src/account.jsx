@@ -9,6 +9,7 @@ function Account() {
     const [error, setError] = useState(null);
     const [text1, setText1] = useState("");
     const [text2, setText2] = useState("");
+    const [text3, setText3] = useState("");
     const navigate = useNavigate();
 
     const API = import.meta.env.VITE_API_URL;
@@ -35,6 +36,7 @@ function Account() {
                 setUser(fetchedUser);
                 setText1(fetchedUser.name);
                 setText2(fetchedUser.email);
+                setText3(fetchedUser.password);
                 setError(null);
             } catch (err) {
                 console.error("Failed to fetch user:", err);
@@ -71,6 +73,7 @@ function Account() {
                 <h2>Account Information:</h2>
                 <p><strong>Name:</strong> {text1}</p>
                 <p><strong>Email:</strong> {text2}</p>
+                <p><strong>Password</strong> {text3}</p>
             </div>
         </div>
     );
