@@ -1,17 +1,46 @@
-.profile{
-    background-color: #f0f0f0;
-    border: 1px solid #00000000;
-    border-radius: 5px;
-    color: rgb(0, 0, 0);
-    border-radius: 20px;
-    width: fit-content;
-    height: fit-content;
-    text-align: center;
-    float: right;
-    position: fixed;
-    top: 0;
-    right: 0;
-    overflow: hidden;
-    font-family: 'Courier New', Courier, monospace;
-    cursor: pointer;
+.test-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f9f9f9; /* Light background */
+  color: #333; /* Dark text color */
+  font-family: 'Helvetica Neue', sans-serif; /* Clean font */
+  padding: 20px;
+}
+
+.test-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #2c3e50; /* Darker title color */
+}
+
+.test-description {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #34495e; /* Subtle text color */
+}
+
+.test-button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #3498db; /* Blue button */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.test-button:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+}
+
+.test-footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #7f8c8d; /* Footer text color */
 }

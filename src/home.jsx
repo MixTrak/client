@@ -90,7 +90,7 @@ function Home() {
         return (
             <>
                 <select className='profile' defaultValue="" onChange={handleChange}>
-                    <option value="" disabled hidden>{user.name.charAt(0)}</option>
+                    <option value="" disabled hidden>{user.name}</option>
                     <option className="accountInfo" value="account">Account Info</option>
                     <option className="logout" value="logout">Logout</option>
                 </select>
