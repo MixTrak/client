@@ -89,12 +89,14 @@ function Home() {
     if (user) {
         return (
             <>
+                <select className='profile' defaultValue="" onChange={handleChange}>
+                    <option value="" disabled hidden>{user.name.charAt(0)}</option>
+                    <option className="accountInfo" value="account">Account Info</option>
+                    <option className="logout" value="logout">Logout</option>
+                </select>
                 <h1>Welcome, {user.name}!</h1>
                 {/*Change The NEWS Based On Events*/}
                 <News />
-                <div className='profile'>
-                    <h1>{user.name.charAt(0)}</h1> {/* Fixed incorrect method wordCharAt */}
-                </div>
             </>
         );
     }
