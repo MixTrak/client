@@ -21,6 +21,9 @@ function Account() {
            localStorage.removeItem('token');
            navigate('/login');
         }
+        if (value === 'home') {
+            navigate('/home');
+        }
     };
 
     const API = import.meta.env.VITE_API_URL;
@@ -83,6 +86,7 @@ function Account() {
             <select className='profile' defaultValue="" onChange={handleChange}>
                     <option value="" disabled hidden>{user.name}</option>
                     <option value="" disabled>{user.name}</option>
+                    <option className="accountInfo" value="home">Home</option>
                     <option className="accountInfo" value="account">Account Info</option>
                     <option className="logout" value="logout">Logout</option>
             </select>
