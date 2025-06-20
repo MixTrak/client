@@ -8,8 +8,6 @@ function Home() {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true); // Added loading state
     const [error, setError] = useState(null);     // Added error state
-    const [text1, setText1] = useState("");
-    const [text2, setText2] = useState("")
     const navigate = useNavigate(); // Initialize navigate hook
     
     const handleChange = (event) => {

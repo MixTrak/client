@@ -12,6 +12,17 @@ function Account() {
     const [text3, setText3] = useState("");
     const navigate = useNavigate();
 
+    const handleChange = (event) => {
+        const value = event.target.value;
+     
+        if (value === 'account') {
+            navigate('/account');
+        } else if (value === 'logout') {
+           localStorage.removeItem('token');
+           navigate('/login');
+        }
+    };
+
     const API = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
@@ -68,14 +79,22 @@ function Account() {
         return <div style={{ color: 'red', textAlign: 'center', padding: '20px' }}>{error}</div>;
     }
     return (
-        <div className="container mt-5">
-            <div className="card p-4">
-                <h2>Account Information:</h2>
-                <p><strong>Name:</strong> {text1}</p>
-                <p><strong>Email:</strong> {text2}</p>
-                <p><strong>Password</strong> {text3}</p>
+        <>
+            <select className='profile' defaultValue="" onChange={handleChange}>
+                    <option value="" disabled hidden>{user.name}</option>
+                    <option value="" disabled>{user.name}</option>
+                    <option className="accountInfo" value="account">Account Info</option>
+                    <option className="logout" value="logout">Logout</option>
+            </select>
+            <div className="container mt-5">
+                <div className="card p-4">
+                    <h2>Account Information:</h2>
+                    <p><strong>Name:</strong> {text1}</p>
+                    <p><strong>Email:</strong> {text2}</p>
+                    <p><strong>Password</strong> {text3}</p>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 
