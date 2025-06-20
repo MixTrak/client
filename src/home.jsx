@@ -12,14 +12,19 @@ function Home() {
     
     const handleChange = (event) => {
         const value = event.target.value;
-     
-        if (value === 'account') {
-            navigate('/account');
-        } else if (value === 'logout') {
-           localStorage.removeItem('token');
-           navigate('/login');
+
+        try {
+            if (value === 'account') {
+                navigate('/account');
+            } else if (value === 'logout') {
+                localStorage.removeItem('userEmail');
+                navigate('/login');
+            }
+        } catch (error) {
+            console.error("Navigation error:", error);
+            alert("An error occurred while navigating. Please try again.");
         }
-        };
+    };
 
     // Ensure VITE_API_URL is set in your Vercel project environment variables
     const API = import.meta.env.VITE_API_URL;

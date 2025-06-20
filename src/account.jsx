@@ -14,15 +14,19 @@ function Account() {
 
     const handleChange = (event) => {
         const value = event.target.value;
-     
-        if (value === 'account') {
-            navigate('/account');
-        } else if (value === 'logout') {
-           localStorage.removeItem('token');
-           navigate('/login');
-        }
-        if (value === 'home') {
-            navigate('/home');
+
+        try {
+            if (value === 'account') {
+                navigate('/account');
+            } else if (value === 'logout') {
+                localStorage.removeItem('userEmail');
+                navigate('/login');
+            } else if (value === 'home') {
+                navigate('/home');
+            }
+        } catch (error) {
+            console.error("Navigation error:", error);
+            alert("An error occurred while navigating. Please try again.");
         }
     };
 
@@ -87,7 +91,6 @@ function Account() {
                     <option value="" disabled hidden>{user.name}</option>
                     <option value="" disabled>{user.name}</option>
                     <option className="accountInfo" value="home">Home</option>
-                    <option className="accountInfo" value="account">Account Info</option>
                     <option className="logout" value="logout">Logout</option>
             </select>
             <div className="container mt-5">
